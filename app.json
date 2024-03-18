@@ -20,11 +20,38 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "package": "com.localbusiness.local",
+        "googleMapsApiKey": "@env.EXPO_PUBLIC_API_UR"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ],
+      "expo-font",
+      "expo-secure-store"
+    ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "YOUR_ORGANIZATION",
+            "project": "YOUR_PROJECT",
+            "authToken": "YOUR_AUTH_TOKEN"
+          }
+        }
+      ]
+    },
+    "extra": {
+      "GOOGLE_MAPS_API_KEY": "@env.EXPO_PUBLIC_API_UR"
     }
   }
 }
